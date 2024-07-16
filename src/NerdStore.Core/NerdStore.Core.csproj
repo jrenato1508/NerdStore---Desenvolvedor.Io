@@ -3,12 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <!--<Nullable>enable</Nullable>-->
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Communication\Mediator\" />
-    <Folder Include="Data\" />
     <Folder Include="DomainObjects\DTO\" />
     <Folder Include="Extensions\" />
     <Folder Include="Messages\CommonMessages\DomainEvents\" />
