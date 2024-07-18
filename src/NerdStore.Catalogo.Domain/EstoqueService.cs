@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NerdStore.Core.Communication.Mediator;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,13 @@ namespace NerdStore.Catalogo.Domain
     public class EstoqueService : IEstoqueService
     {
         private readonly IProdutoRepository _produtoRepository;
-        public EstoqueService(IProdutoRepository produtoRepository)
+
+        private readonly IMediatorHandler _mediatorHandler;
+        public EstoqueService(IProdutoRepository produtoRepository,
+                              IMediatorHandler mediator)
         {
             _produtoRepository = produtoRepository;
+            _mediatorHandler = mediator;
         }
 
         public async Task<bool> DebitarEstoque(Guid produtoId, int quantidade)
