@@ -1,7 +1,21 @@
+using Microsoft.EntityFrameworkCore;
+using NerdStore.Catalogo.Application.AutoMapper;
+using NerdStore.Catalogo.Data;
+using NerdStore.WebApp.Mvc.Configurations;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<CatalogoContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+
+builder.Services.AddMvcConfiguration();
+builder.Services.AddAutoMapper(typeof(DomainToDtoMappingProfile), typeof(DtoToDomainMappingProfile));
+builder.Services.AddMediatR(a => a.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+builder.Services.ResolveDependencies();
+
 
 var app = builder.Build();
 
