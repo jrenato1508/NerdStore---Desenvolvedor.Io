@@ -1,4 +1,5 @@
-﻿using NerdStore.Core.Communication.Mediator;
+﻿using NerdStore.Catalogo.Domain.Event;
+using NerdStore.Core.Communication.Mediator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace NerdStore.Catalogo.Domain
 
             if (produto.QuantidadeEstoque < 10)
             {
-                //await _mediatorHandler.PublicarEvento(new ProdutoAbaixoEstoqueEvent(produtoId, produto.QuantidadeEstoque));
+                await _mediatorHandler.PublicarEvento(new ProdutoAbaixoEstoqueEvent(produtoId, produto.QuantidadeEstoque));
             }
 
             _produtoRepository.Atualizar(produto);

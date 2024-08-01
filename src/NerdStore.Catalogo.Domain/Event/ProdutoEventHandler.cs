@@ -28,4 +28,3 @@ namespace NerdStore.Catalogo.Domain.Event
     }
 }
 
-// Parei no Item 8
