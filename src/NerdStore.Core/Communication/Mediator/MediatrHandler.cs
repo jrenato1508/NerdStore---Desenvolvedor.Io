@@ -27,7 +27,7 @@ namespace NerdStore.Core.Communication.Mediator
 
         public async Task<bool> EnviarComando<T>(T comando) where T : Command
         {
-            throw new NotImplementedException();
+            return await _mediator.Send(comando);
 
         }
 

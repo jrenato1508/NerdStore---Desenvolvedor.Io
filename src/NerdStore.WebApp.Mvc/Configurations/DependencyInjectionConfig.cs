@@ -6,6 +6,9 @@ using NerdStore.Catalogo.Domain;
 using NerdStore.Catalogo.Domain.Event;
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Vendas.Application.Commands;
+using NerdStore.Vendas.Data;
+using NerdStore.Vendas.Data.Repository;
+using NerdStore.Vendas.Domain;
 
 namespace NerdStore.WebApp.Mvc.Configurations
 {
@@ -27,9 +30,9 @@ namespace NerdStore.WebApp.Mvc.Configurations
             //services.AddScoped<INotificationHandler<PedidoProcessamentoCanceladoEvent>, ProdutoEventHandler>();
 
 
-
-            //services.AddScoped<IPedidoRepository, PedidoRepository>();
-            //services.AddScoped<VendasContext>();
+            
+            services.AddScoped<IPedidoRepository, PedidoRepository>();
+            services.AddScoped<VendasContext>();
             //services.AddScoped<IPedidoQueries, PedidoQueries>();
 
             // COMMANDS
