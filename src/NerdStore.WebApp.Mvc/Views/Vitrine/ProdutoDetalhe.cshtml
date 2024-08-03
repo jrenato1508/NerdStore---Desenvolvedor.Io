@@ -158,7 +158,7 @@
             <p>Apenas @Model.QuantidadeEstoque em estoque!</p>
             <p>@Model.Descricao</p>
 
-            @* Form de implementação que fizemos para adicionar o carrinho. *@
+            
             <form method="post" asp-controller="Carrinho" asp-action="AdicionarItem">
 
                 <input type="hidden" id="Id" name="Id" value="@Model.Id" />
@@ -172,7 +172,7 @@
                     </div>
                 </div>
 
-                <!-- Botoes de compra -->
+                
                 <div class="section" style="padding-bottom: 20px;">
                     <button type="submit" class="btn btn-success"><span style="margin-right: 20px" aria-hidden="true"></span> Comprar agora!</button>
                 </div>
@@ -187,7 +187,7 @@
 {
     <script>
         $(document).ready(function () {
-            //-- Click on detail
+            
             $("ul.menu-items > li").on("click", function () {
                 $("ul.menu-items > li").removeClass("active");
                 $(this).addClass("active");
@@ -200,7 +200,7 @@
                 $(this).addClass("active");
             })
 
-            //-- Click on QUANTITY
+            
             $(".btn-minus").on("click", function () {
                 var now = $(".section > div > input").val();
                 if ($.isNumeric(now)) {

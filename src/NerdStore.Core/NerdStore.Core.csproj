@@ -10,7 +10,6 @@
     <Folder Include="DomainObjects\DTO\" />
     <Folder Include="Extensions\" />
     <Folder Include="Messages\CommonMessages\IntegrationEvents\" />
-    <Folder Include="Messages\CommonMessages\Notifications\" />
   </ItemGroup>
 
   <ItemGroup>

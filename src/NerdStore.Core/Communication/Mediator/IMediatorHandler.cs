@@ -1,4 +1,5 @@
 ﻿using NerdStore.Core.Messages;
+using NerdStore.Core.Messages.CommonMessages.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace NerdStore.Core.Communication.Mediator
         Task<bool> EnviarComando<T>(T comando) where T : Command;
 
 
-        //Task PublicarNotificacao<T>(T notificacao) where T : DomainNotification;
+        Task PublicarNotificacao<T>(T notificacao) where T : DomainNotification;
     }
 }
