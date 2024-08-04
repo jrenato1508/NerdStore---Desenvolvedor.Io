@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using NerdStore.Catalogo.Domain.Entitys;
 using NerdStore.Core.Data;
+using NerdStore.Core.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +29,10 @@ namespace NerdStore.Catalogo.Data
                 .Where(p => p.ClrType == typeof(string))))
                 property.SetColumnType("Varchar(100)");
 
-            
-            //modelBuilder.Ignore<Event>();
 
-            
+            modelBuilder.Ignore<Event>();
+
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogoContext).Assembly);
         }
 

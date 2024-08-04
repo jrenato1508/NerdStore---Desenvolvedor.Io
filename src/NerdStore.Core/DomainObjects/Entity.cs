@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NerdStore.Core.Messages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,31 @@ namespace NerdStore.Core.DomainObjects
     public abstract class Entity
     {
         public Guid Id { get; set; }
+
+        private List<Event> _notificacoesEvent;
+        public IReadOnlyCollection<Event> NotificacoesEvent => _notificacoesEvent?.AsReadOnly();
+        
         protected Entity()
         {
            Id = Guid.NewGuid();
         }
+
+        public void AdicionarEvento(Event evento)
+        {
+            _notificacoesEvent = _notificacoesEvent ?? new List<Event>();
+            _notificacoesEvent.Add(evento);
+        }
+              
+        public void RemoverEvento(Event eventItem)
+        {
+            _notificacoesEvent?.Remove(eventItem);
+        }
+
+        public void LimparEventos()
+        {
+            _notificacoesEvent?.Clear();
+        }
+
 
         public override bool Equals(object obj)
         {

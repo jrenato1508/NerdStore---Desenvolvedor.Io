@@ -7,6 +7,7 @@ using NerdStore.Catalogo.Domain.Event;
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
 using NerdStore.Vendas.Application.Commands;
+using NerdStore.Vendas.Application.Events;
 using NerdStore.Vendas.Data;
 using NerdStore.Vendas.Data.Repository;
 using NerdStore.Vendas.Domain;
@@ -26,12 +27,12 @@ namespace NerdStore.WebApp.Mvc.Configurations
             services.AddScoped<CatalogoContext>();
 
 
-            //services.AddScoped<INotificationHandler<ProdutoAbaixoEstoqueEvent>, ProdutoEventHandler>();
+            services.AddScoped<INotificationHandler<ProdutoAbaixoEstoqueEvent>, ProdutoEventHandler>();
             //services.AddScoped<INotificationHandler<PedidoIniciadoEvent>, ProdutoEventHandler>();
             //services.AddScoped<INotificationHandler<PedidoProcessamentoCanceladoEvent>, ProdutoEventHandler>();
 
 
-            
+
             services.AddScoped<IPedidoRepository, PedidoRepository>();
             services.AddScoped<VendasContext>();
             //services.AddScoped<IPedidoQueries, PedidoQueries>();
@@ -47,7 +48,9 @@ namespace NerdStore.WebApp.Mvc.Configurations
             //services.AddScoped<IRequestHandler<CancelarProcessamentoPedidoEstornarEstoqueCommand, bool>, PedidoCommandHandler>();
 
             //// EVENTS
-            //services.AddScoped<INotificationHandler<PedidoRascunhoIniciadoEvent>, PedidoEventHandler>();
+            services.AddScoped<INotificationHandler<PedidoRascunhoIniciadoEvent>, PedidoEventHandler>();
+            services.AddScoped<INotificationHandler<PedidoAtualizadoEvent>, PedidoEventHandler>();
+            services.AddScoped<INotificationHandler<PedidoItemAdicionadoEvent>, PedidoEventHandler>();
             //services.AddScoped<INotificationHandler<PedidoEstoqueRejeitadoEvent>, PedidoEventHandler>();
             //services.AddScoped<INotificationHandler<PagamentoRealizadoEvent>, PedidoEventHandler>();
             //services.AddScoped<INotificationHandler<PagamentoRecusadoEvent>, PedidoEventHandler>();
