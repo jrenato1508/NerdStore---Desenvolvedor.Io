@@ -4,11 +4,17 @@ using NerdStore.Catalogo.Data;
 using NerdStore.Vendas.Data;
 using NerdStore.WebApp.Mvc.Configurations;
 using System.Reflection;
+using Microsoft.AspNetCore.Identity;
+using NerdStore.WebApp.Mvc.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddIdentityConfiguration(builder.Configuration);
+
 builder.Services.AddDbContext<CatalogoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 builder.Services.AddDbContext<VendasContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -44,4 +50,4 @@ app.MapControllerRoute(
 
 app.Run();
 
-// Parei no Item 13
+// Parei no Item 19 # Adicionando Novas Funcionalidades com comandos #

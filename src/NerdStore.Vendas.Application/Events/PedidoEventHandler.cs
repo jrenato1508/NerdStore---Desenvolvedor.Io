@@ -38,5 +38,3 @@ namespace NerdStore.Vendas.Application.Events
 }
 
 
-// implementamos Event e Event Handler na aplicação. Vamos começar a implementação das Queries
-// paramos então no item 18.
