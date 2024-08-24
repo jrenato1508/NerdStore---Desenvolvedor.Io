@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using NerdStore.Core.Communication.Mediator;
 using NerdStore.Core.Messages;
 using NerdStore.Core.Messages.CommonMessages.IntegrationEvents;
 
@@ -11,12 +12,15 @@ namespace NerdStore.Catalogo.Domain.Event
     {
         private readonly IProdutoRepository _produtoRepository;
         private readonly IEstoqueService _estoqueService;
+        private readonly IMediatorHandler _mediatorHandler;
 
         public ProdutoEventHandler( IProdutoRepository produtoRepository,
-                                    IEstoqueService estoqueService)
+                                    IEstoqueService estoqueService,
+                                    IMediatorHandler mediator)
         {
             _produtoRepository = produtoRepository;
             _estoqueService = estoqueService;
+            _mediatorHandler = mediator;
         }
 
         public async Task Handle(ProdutoAbaixoEstoqueEvent message, CancellationToken cancellationToken)
@@ -27,8 +31,8 @@ namespace NerdStore.Catalogo.Domain.Event
         }
 
 
-        // Parei aqui no Item 20.4.1
-        public async Task Handle(PedidoIniciadoEvent notification, CancellationToken cancellationToken)
+        
+        public async Task Handle(PedidoIniciadoEvent message, CancellationToken cancellationToken)
         {
             var result = await _estoqueService.DebitarListaProdutosPedido(message.ProdutosPedido);
             if (result)

@@ -1,5 +1,6 @@
 ﻿using NerdStore.Catalogo.Domain.Event;
 using NerdStore.Core.Communication.Mediator;
+using NerdStore.Core.DomainObjects.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,26 @@ namespace NerdStore.Catalogo.Domain
             _produtoRepository = produtoRepository;
             _mediatorHandler = mediator;
         }
-
         public async Task<bool> DebitarEstoque(Guid produtoId, int quantidade)
+        {
+            if (!await DebitarItemEstoque(produtoId, quantidade)) return false;
+
+            return await _produtoRepository.UnitOfWork.Commit();
+        }
+
+
+        public async Task<bool> DebitarListaProdutosPedido(ListaProdutosPedido lista)
+        {
+            foreach (var item in lista.Itens)
+            {
+                if (!await DebitarItemEstoque(item.Id, item.Quantidade)) return false;
+            }
+
+            return await _produtoRepository.UnitOfWork.Commit();
+        }
+
+
+        public async Task<bool> DebitarItemEstoque(Guid produtoId, int quantidade)
         {
             var produto = await _produtoRepository.ObterPorId(produtoId);
 
@@ -37,12 +56,31 @@ namespace NerdStore.Catalogo.Domain
 
             _produtoRepository.Atualizar(produto);
 
+            return true;
+        }
+
+
+        public async Task<bool> ReporEstoque(Guid produtoId, int quantidade)
+        {
+            var sucesso = await ReporItemEstoque(produtoId, quantidade);
+
+            if (!sucesso) return false;
+
+            return await _produtoRepository.UnitOfWork.Commit();
+        }
+
+        public async Task<bool> ReporListaProdutosPedido(ListaProdutosPedido lista)
+        {
+            foreach (var item in lista.Itens)
+            {
+                await ReporItemEstoque(item.Id, item.Quantidade);
+            }
+
             return await _produtoRepository.UnitOfWork.Commit();
         }
 
 
-
-        public async Task<bool> ReporEstoque(Guid produtoId, int quantidade)
+        private async Task<bool> ReporItemEstoque(Guid produtoId, int quantidade)
         {
             var produto = await _produtoRepository.ObterPorId(produtoId);
 
@@ -52,7 +90,7 @@ namespace NerdStore.Catalogo.Domain
 
             _produtoRepository.Atualizar(produto);
 
-            return await _produtoRepository.UnitOfWork.Commit();
+            return true;
         }
 
 
@@ -64,4 +102,3 @@ namespace NerdStore.Catalogo.Domain
 }
 
 
-// PAREI NO ITEM 7

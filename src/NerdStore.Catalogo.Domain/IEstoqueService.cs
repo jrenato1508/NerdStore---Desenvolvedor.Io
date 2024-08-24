@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NerdStore.Core.DomainObjects.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,11 @@ namespace NerdStore.Catalogo.Domain
     {
         Task<bool> DebitarEstoque(Guid produtoId, int quantidade);
 
-        //Task<bool> DebitarListaProdutosPedido(ListaProdutosPedido lista);
+        Task<bool> DebitarListaProdutosPedido(ListaProdutosPedido lista);
 
 
         Task<bool> ReporEstoque(Guid produtoId, int quantidade);
 
-        //Task<bool> ReporListaProdutosPedido(ListaProdutosPedido lista);
+        Task<bool> ReporListaProdutosPedido(ListaProdutosPedido lista);
     }
 }
