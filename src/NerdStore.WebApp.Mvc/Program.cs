@@ -6,6 +6,7 @@ using NerdStore.WebApp.Mvc.Configurations;
 using System.Reflection;
 using Microsoft.AspNetCore.Identity;
 using NerdStore.WebApp.Mvc.Data;
+using NerdStore.Pagamentos.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,9 @@ builder.Services.AddDbContext<CatalogoContext>(options =>
 
 
 builder.Services.AddDbContext<VendasContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDbContext<PagamentoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
@@ -50,4 +54,4 @@ app.MapControllerRoute(
 
 app.Run();
 
-// Parei no Item 19 # Adicionando Novas Funcionalidades com comandos #
+// Parei no Item 22 # Integração de BC's (Bounded Context) - Finalização do pedido #

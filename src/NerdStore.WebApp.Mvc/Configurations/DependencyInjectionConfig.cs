@@ -6,6 +6,7 @@ using NerdStore.Catalogo.Domain;
 using NerdStore.Catalogo.Domain.Event;
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
+using NerdStore.Pagamentos.Data;
 using NerdStore.Vendas.Application.Commands;
 using NerdStore.Vendas.Application.Events;
 using NerdStore.Vendas.Application.Queries;
@@ -57,12 +58,13 @@ namespace NerdStore.WebApp.Mvc.Configurations
             //services.AddScoped<INotificationHandler<PagamentoRecusadoEvent>, PedidoEventHandler>();
 
 
+            services.AddScoped<PagamentoContext>();
             //services.AddScoped<IPagamentoRepository, PagamentoRepository>();
             //services.AddScoped<IPagamentoService, PagamentoService>();
             //services.AddScoped<IPagamentoCartaoCreditoFacade, PagamentoCartaoCreditoFacade>();
             //services.AddScoped<IPayPalGateway, PayPalGateway>();
             //services.AddScoped<IConfigurationManagerPagamento, ConfigurationManagerPagamento>();
-            //services.AddScoped<PagamentoContext>();
+
 
             ////EVENT
             //services.AddScoped<INotificationHandler<PedidoEstoqueConfirmadoEvent>, PagamentoEventHandler>();
