@@ -7,7 +7,7 @@ namespace NerdStore.WebApp.Mvc.Extensions
     {
         private readonly IPedidoQueries _pedidoQueries;
                         
-        protected Guid ClienteId = Guid.Parse("31366d19-b5ab-481d-93ba-e7578ed152df");
+        protected Guid ClienteId = Guid.Parse("330daf4d-8b9d-4a74-935c-94cee29128a5");
 
         public CartViewComponent(IPedidoQueries pedidoQueries)
         {

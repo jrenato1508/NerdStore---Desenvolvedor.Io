@@ -54,4 +54,3 @@ app.MapControllerRoute(
 
 app.Run();
 
-// Parei no Item 22 # Integração de BC's (Bounded Context) - Finalização do pedido #

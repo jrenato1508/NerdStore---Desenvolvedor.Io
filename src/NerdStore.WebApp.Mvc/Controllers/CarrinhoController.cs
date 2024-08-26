@@ -131,6 +131,7 @@ namespace NerdStore.WebApp.Mvc.Controllers
         [Route("iniciar-pedido")]
         public async Task<IActionResult> IniciarPedido(CarrinhoViewModel carrinhoViewModel)
         {
+            carrinhoViewModel.Pagamento.NumeroCartao = carrinhoViewModel.Pagamento.NumeroCartao.Replace(" ","");
             var carrinho = await _pedidoQueries.ObterCarrinhoCliente(ClienteId);
 
             var command = new IniciarPedidoCommand(carrinho.PedidoId, ClienteId, carrinho.ValorTotal, carrinhoViewModel.Pagamento.NomeCartao,
@@ -140,7 +141,7 @@ namespace NerdStore.WebApp.Mvc.Controllers
 
             if (OperacaoValida())
             {
-                return RedirectToAction("Index", "Pedido");
+                return RedirectToAction("Index","Vitrine");
             }
 
             return View("ResumoDaCompra", await _pedidoQueries.ObterCarrinhoCliente(ClienteId));
@@ -148,3 +149,5 @@ namespace NerdStore.WebApp.Mvc.Controllers
 
     }
 }
+
+
